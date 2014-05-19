@@ -8,9 +8,28 @@ public class Board {
     private ArrayList<Pawn> pawnsRow7 = new ArrayList<Pawn>(8);
 
     private ArrayList<Pawn> pawnsRow1 = new ArrayList<Pawn>(8);
+    private ArrayList<Pawn> pawnsRow3 = new ArrayList<Pawn>(8);
+    private ArrayList<Pawn> pawnsRow4 = new ArrayList<Pawn>(8);
+    private ArrayList<Pawn> pawnsRow5 = new ArrayList<Pawn>(8);
+    private ArrayList<Pawn> pawnsRow6 = new ArrayList<Pawn>(8);
+    private ArrayList<Pawn> pawnsRow8 = new ArrayList<Pawn>(8);
+
+    private ArrayList<ArrayList> rows = new ArrayList<ArrayList>(8);
+
+    private void initRows() {
+        rows.add(pawnsRow1);
+        rows.add(pawnsRow2);
+        rows.add(pawnsRow3);
+        rows.add(pawnsRow4);
+        rows.add(pawnsRow5);
+        rows.add(pawnsRow6);
+        rows.add(pawnsRow7);
+        rows.add(pawnsRow8);
+    }
 
     protected Board() {
         initialize();
+        initRows();
     }
 
     public void enrollPawn(ArrayList<Pawn> pawnRow, Pawn pawn) {
@@ -35,7 +54,7 @@ public class Board {
             case 7:
                 return getStringBuilder(pawnsRow7);
             default:
-                return "********\n";
+                return "........\n";
         }
     }
 
@@ -46,5 +65,19 @@ public class Board {
         }
         buffer.append("\n");
         return buffer.toString();
+    }
+
+    protected String getAllPrint() {
+        StringBuilder bufferRow = new StringBuilder();
+        for(ArrayList row : rows) {
+            if (row.size() != 0){
+                bufferRow.append(getStringBuilder(row));
+            }
+            else {
+                bufferRow.append("........\n");
+            }
+        }
+        System.out.printf(String.valueOf(bufferRow));
+        return bufferRow.toString();
     }
 }

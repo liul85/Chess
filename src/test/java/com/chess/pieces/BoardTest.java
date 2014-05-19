@@ -17,6 +17,10 @@ public class BoardTest extends TestCase {
 
         assertEquals("pppppppp\n", board.getRowPrintFormat(2));
         assertEquals("PPPPPPPP\n", board.getRowPrintFormat(7));
-        assertEquals("********\n", board.getRowPrintFormat(1));
+        assertEquals("........\n", board.getRowPrintFormat(1));
+    }
+
+    public void testBoardInit() {
+        assertEquals("........\npppppppp\n........\n........\n........\n........\nPPPPPPPP\n........\n", board.getAllPrint());
     }
 }
