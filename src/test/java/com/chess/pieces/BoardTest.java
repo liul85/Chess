@@ -8,25 +8,15 @@ import junit.framework.TestCase;
 public class BoardTest extends TestCase {
 
     private Board board;
-    private Pawn pawn1, pawn2;
 
     public void setUp() {
         board = new Board();
-        pawn1 = Pawn.createPawn("white");
-        pawn2 = Pawn.createPawn("black");
     }
     public void testCreate() {
-        assertEquals(0, board.getNumberOfPawns());
-    }
+        assertEquals(16, board.getNumberOfPawns());
 
-    public void testAddPawnsToBoard() {
-        Board board = new Board();
-
-        board.enrollPawn(0, pawn1);
-        board.enrollPawn(1, pawn2);
-
-        assertEquals(2, board.getNumberOfPawns());
-        assertEquals(0, board.getPositionOfPawn(pawn1));
-        assertEquals(1, board.getPositionOfPawn(pawn2));
+        assertEquals("pppppppp\n", board.getRowPrintFormat(2));
+        assertEquals("PPPPPPPP\n", board.getRowPrintFormat(7));
+        assertEquals("********\n", board.getRowPrintFormat(1));
     }
 }

@@ -2,37 +2,49 @@ package com.chess.pieces;
 
 import java.util.ArrayList;
 
-/**
- * Provides a board which makes the pawns listed on.
- * @author liul85
- */
 public class Board {
 
-    private ArrayList<Pawn> pawns = new ArrayList<Pawn>();
+    private ArrayList<Pawn> pawnsRow2 = new ArrayList<Pawn>(8);
+    private ArrayList<Pawn> pawnsRow7 = new ArrayList<Pawn>(8);
 
-    /**
-     * provide a method to add pawns into list.
-     * @param p describe the position which the pawn is listed on.
-     * @param pawn describe the pawn listed on the board.
-     */
-    public void enrollPawn(int p, Pawn pawn) {
-        pawns.add(p, pawn);
+    private ArrayList<Pawn> pawnsRow1 = new ArrayList<Pawn>(8);
+
+    protected Board() {
+        initialize();
     }
 
-    /**
-     * provide a method to get the length of the ArrayList.
-     * @return the size of ArrayList in "int" format.
-     */
+    public void enrollPawn(ArrayList<Pawn> pawnRow, Pawn pawn) {
+        pawnRow.add(pawn);
+    }
+
     public int getNumberOfPawns() {
-        return pawns.size();
+        return pawnsRow2.size() + pawnsRow7.size();
     }
 
-    /**
-     * provide a method to get the pawn object with the index.
-     * @param pawn describe the pawn object you want to query.
-     * @return the index of pawn in "int" format.
-     */
-    public int getPositionOfPawn(Pawn pawn) {
-        return pawns.indexOf(pawn);
+    private void initialize() {
+        for(int i = 1; i <= 8; i++) {
+            pawnsRow2.add(new Pawn("white"));
+            pawnsRow7.add(new Pawn("black"));
+        }
+    }
+
+    protected String getRowPrintFormat(int row) {
+        switch (row) {
+            case 2:
+                return getStringBuilder(pawnsRow2);
+            case 7:
+                return getStringBuilder(pawnsRow7);
+            default:
+                return "********\n";
+        }
+    }
+
+    private String getStringBuilder(ArrayList<Pawn> pawns) {
+        StringBuilder buffer = new StringBuilder(8);
+        for ( Pawn pawn : pawns) {
+            buffer.append(pawn.getPrintFormat());
+        }
+        buffer.append("\n");
+        return buffer.toString();
     }
 }
