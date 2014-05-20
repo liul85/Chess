@@ -12,6 +12,7 @@ public class BoardTest extends TestCase {
     public void setUp() {
         board = new Board();
     }
+
     public void testCreate() {
         assertEquals(16, board.getNumberOfPawns());
 
@@ -21,6 +22,7 @@ public class BoardTest extends TestCase {
     }
 
     public void testBoardInit() {
-        assertEquals("........\npppppppp\n........\n........\n........\n........\nPPPPPPPP\n........\n", board.getAllPrint());
+        assertEquals("........\npppppppp\n........\n........\n........\n........\nPPPPPPPP\n........\n",
+                board.getAllPrint());
     }
 }

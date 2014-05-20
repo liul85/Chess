@@ -4,80 +4,57 @@ import java.util.ArrayList;
 
 public class Board {
 
-    private ArrayList<Pawn> pawnsRow2 = new ArrayList<Pawn>(8);
-    private ArrayList<Pawn> pawnsRow7 = new ArrayList<Pawn>(8);
-
-    private ArrayList<Pawn> pawnsRow1 = new ArrayList<Pawn>(8);
-    private ArrayList<Pawn> pawnsRow3 = new ArrayList<Pawn>(8);
-    private ArrayList<Pawn> pawnsRow4 = new ArrayList<Pawn>(8);
-    private ArrayList<Pawn> pawnsRow5 = new ArrayList<Pawn>(8);
-    private ArrayList<Pawn> pawnsRow6 = new ArrayList<Pawn>(8);
-    private ArrayList<Pawn> pawnsRow8 = new ArrayList<Pawn>(8);
-
-    private ArrayList<ArrayList> rows = new ArrayList<ArrayList>(8);
-
-    private void initRows() {
-        rows.add(pawnsRow1);
-        rows.add(pawnsRow2);
-        rows.add(pawnsRow3);
-        rows.add(pawnsRow4);
-        rows.add(pawnsRow5);
-        rows.add(pawnsRow6);
-        rows.add(pawnsRow7);
-        rows.add(pawnsRow8);
-    }
+    private ArrayList<ArrayList<Pawn>> pieces = new ArrayList<ArrayList<Pawn>>(8);
 
     protected Board() {
         initialize();
-        initRows();
-    }
-
-    public void enrollPawn(ArrayList<Pawn> pawnRow, Pawn pawn) {
-        pawnRow.add(pawn);
-    }
-
-    public int getNumberOfPawns() {
-        return pawnsRow2.size() + pawnsRow7.size();
     }
 
     private void initialize() {
         for(int i = 1; i <= 8; i++) {
-            pawnsRow2.add(new Pawn("white"));
-            pawnsRow7.add(new Pawn("black"));
+            pieces.add(new ArrayList<Pawn>(8));
         }
+
+        pieces.set(1, createPawnsInRow("white"));
+        pieces.set(6, createPawnsInRow("black"));
     }
 
-    protected String getRowPrintFormat(int row) {
-        switch (row) {
-            case 2:
-                return getStringBuilder(pawnsRow2);
-            case 7:
-                return getStringBuilder(pawnsRow7);
-            default:
-                return "........\n";
+    private ArrayList<Pawn> createPawnsInRow(String color) {
+        ArrayList<Pawn> pawns = new ArrayList<Pawn>(8);
+        for (int i = 0; i <= 7; i++) {
+            pawns.add(Pawn.createPawn(color));
         }
+        return pawns;
     }
 
-    private String getStringBuilder(ArrayList<Pawn> pawns) {
-        StringBuilder buffer = new StringBuilder(8);
-        for ( Pawn pawn : pawns) {
-            buffer.append(pawn.getPrintFormat());
+    protected int getNumberOfPawns() {
+        int i = 0;
+        for (int r = 0; r <= 7; r++) {
+            i += pieces.get(r).size();
         }
-        buffer.append("\n");
+        return i;
+    }
+
+    protected String getRowPrintFormat(int i) {
+        StringBuilder buffer = new StringBuilder();
+        if (pieces.get(i-1).size() != 0) {
+            for (int m = 0; m <= 7; m++) {
+                buffer.append(pieces.get(i-1).get(m).getPrintFormat());
+            }
+            buffer.append("\n");
+        }
+        else {
+            buffer.append("........\n");
+        }
         return buffer.toString();
     }
 
     protected String getAllPrint() {
-        StringBuilder bufferRow = new StringBuilder();
-        for(ArrayList row : rows) {
-            if (row.size() != 0){
-                bufferRow.append(getStringBuilder(row));
-            }
-            else {
-                bufferRow.append("........\n");
-            }
+        StringBuilder buffer = new StringBuilder();
+        for (int i = 1; i <= pieces.size(); i++) {
+            buffer.append(getRowPrintFormat(i));
         }
-        System.out.printf(String.valueOf(bufferRow));
-        return bufferRow.toString();
+        return buffer.toString();
     }
+
 }
