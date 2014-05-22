@@ -1,6 +1,8 @@
 package com.chess.pieces;
 
+import com.chess.util.StringUtil;
 import junit.framework.TestCase;
+import org.junit.Test;
 
 /**
  * Created by MAC on 5/17/14.
@@ -13,16 +15,18 @@ public class BoardTest extends TestCase {
         board = new Board();
     }
 
+    @Test
     public void testCreate() {
-        assertEquals(16, board.getNumberOfPawns());
+        board.initialize();
+        assertEquals(32, board.getPieceCount());
 
-        assertEquals("pppppppp\n", board.getRowPrintFormat(2));
-        assertEquals("PPPPPPPP\n", board.getRowPrintFormat(7));
-        assertEquals("........\n", board.getRowPrintFormat(1));
-    }
+        String blankRank = StringUtil.appendNewLine("........");
 
-    public void testBoardInit() {
-        assertEquals("........\npppppppp\n........\n........\n........\n........\nPPPPPPPP\n........\n",
+        assertEquals(StringUtil.appendNewLine("RNBQKBNR") +
+        StringUtil.appendNewLine("PPPPPPPP") +
+                blankRank + blankRank + blankRank + blankRank +
+                StringUtil.appendNewLine("pppppppp") +
+        StringUtil.appendNewLine("rnbqkbnr"),
                 board.getAllPrint());
     }
 }
