@@ -10,35 +10,12 @@ public class Piece {
     private Enum name;
 
     protected enum Names {
-        R("r"),
-        N("n"),
-        B("b"),
-        Q("q"),
-        K("k"),
-        P("p");
-
-        private String name;
-        Names(String name) {
-            this.name = name;
-        }
-
-        protected String getEnumName() {
-            return name;
-        }
+        R,N,B,Q,K,P;
     }
 
     protected enum Colors {
-        White("White"),
-        Black("Black");
-
-        private String color;
-        Colors(String color) {
-            this.color = color;
-        }
-
-        protected String getColor() {
-            return color;
-        }
+        White,
+        Black;
     }
 
     private Piece(Enum name, Enum color) {

@@ -1,6 +1,7 @@
 package com.chess.pieces;
 
 import java.util.ArrayList;
+
 import static com.chess.util.StringUtil.NEWLINE;
 
 public class Board {
@@ -15,24 +16,25 @@ public class Board {
         pieces.set(1, createPiecesInRow(Piece.Names.P, Piece.Colors.Black));
         pieces.set(6, createPiecesInRow(Piece.Names.P, Piece.Colors.White));
 
-        pieces.get(0).add(0, Piece.createPawn(Piece.Names.R, Piece.Colors.Black));
-        pieces.get(0).add(1, Piece.createPawn(Piece.Names.N, Piece.Colors.Black));
-        pieces.get(0).add(2, Piece.createPawn(Piece.Names.B, Piece.Colors.Black));
-        pieces.get(0).add(3, Piece.createPawn(Piece.Names.Q, Piece.Colors.Black));
-        pieces.get(0).add(4, Piece.createPawn(Piece.Names.K, Piece.Colors.Black));
-        pieces.get(0).add(5, Piece.createPawn(Piece.Names.B, Piece.Colors.Black));
-        pieces.get(0).add(6, Piece.createPawn(Piece.Names.N, Piece.Colors.Black));
-        pieces.get(0).add(7, Piece.createPawn(Piece.Names.R, Piece.Colors.Black));
+        pieces.set(0, createQueenRank(Piece.Colors.Black));
+        pieces.set(7, createQueenRank(Piece.Colors.White));
 
-        pieces.get(7).add(0, Piece.createPawn(Piece.Names.R, Piece.Colors.White));
-        pieces.get(7).add(1, Piece.createPawn(Piece.Names.N, Piece.Colors.White));
-        pieces.get(7).add(2, Piece.createPawn(Piece.Names.B, Piece.Colors.White));
-        pieces.get(7).add(3, Piece.createPawn(Piece.Names.Q, Piece.Colors.White));
-        pieces.get(7).add(4, Piece.createPawn(Piece.Names.K, Piece.Colors.White));
-        pieces.get(7).add(5, Piece.createPawn(Piece.Names.B, Piece.Colors.White));
-        pieces.get(7).add(6, Piece.createPawn(Piece.Names.N, Piece.Colors.White));
-        pieces.get(7).add(7, Piece.createPawn(Piece.Names.R, Piece.Colors.White));
     }
+
+   private ArrayList<Piece> createQueenRank(Enum color) {
+       ArrayList<Piece> rank = new ArrayList<Piece>(8);
+
+       rank.add(Piece.createPawn(Piece.Names.R, color));
+       rank.add(Piece.createPawn(Piece.Names.N, color));
+       rank.add(Piece.createPawn(Piece.Names.B, color));
+       rank.add(Piece.createPawn(Piece.Names.Q, color));
+       rank.add(Piece.createPawn(Piece.Names.K, color));
+       rank.add(Piece.createPawn(Piece.Names.B, color));
+       rank.add(Piece.createPawn(Piece.Names.N, color));
+       rank.add(Piece.createPawn(Piece.Names.R, color));
+
+       return rank;
+   }
 
     private ArrayList<Piece> createPiecesInRow(Enum name, Enum color) {
         ArrayList<Piece> pieces = new ArrayList<Piece>(8);
