@@ -5,6 +5,8 @@
 package com.chess.pieces;
 
 public class Piece {
+    static int whitePieces = 0;
+    static int blackPieces = 0;
 
     private Enum color;
     private Enum name;
@@ -24,6 +26,12 @@ public class Piece {
     }
 
     static protected Piece createPawn(Enum name, Enum color) {
+        if (color.equals(Colors.White)) {
+            whitePieces += 1;
+        }
+        else {
+            blackPieces += 1;
+        }
         return new Piece(name, color);
     }
 
@@ -36,11 +44,18 @@ public class Piece {
     }
 
     protected String getPrintFormat() {
-        System.out.printf("color......" + this.color.toString());
         if(this.color.toString() == "Black") {
             return this.name.toString().toUpperCase();
         }
 
         return this.name.toString().toLowerCase();
+    }
+
+    protected boolean isWhite() {
+        return color.equals(Colors.White);
+    }
+
+    protected boolean isBlack() {
+        return color.equals(Colors.Black);
     }
 }

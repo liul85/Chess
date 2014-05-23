@@ -6,6 +6,10 @@ import static com.chess.util.StringUtil.NEWLINE;
 
 public class Board {
 
+    private Board() {
+        initialize();
+    }
+
     private ArrayList<ArrayList<Piece>> pieces = new ArrayList<ArrayList<Piece>>(8);
 
     protected void initialize() {
@@ -20,6 +24,11 @@ public class Board {
         pieces.set(7, createQueenRank(Piece.Colors.White));
 
     }
+
+    protected static Board createBoard() {
+        return new Board();
+    }
+
 
    private ArrayList<Piece> createQueenRank(Enum color) {
        ArrayList<Piece> rank = new ArrayList<Piece>(8);

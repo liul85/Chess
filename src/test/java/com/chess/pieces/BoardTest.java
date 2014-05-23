@@ -12,12 +12,12 @@ public class BoardTest extends TestCase {
     private Board board;
 
     public void setUp() {
-        board = new Board();
+        board = Board.createBoard();
     }
 
     @Test
     public void testCreate() {
-        board.initialize();
+
         assertEquals(32, board.getPieceCount());
 
         String blankRank = StringUtil.appendNewLine("........");
@@ -28,5 +28,7 @@ public class BoardTest extends TestCase {
                 StringUtil.appendNewLine("pppppppp") +
         StringUtil.appendNewLine("rnbqkbnr"),
                 board.getAllPrint());
+        assertEquals(16, Piece.blackPieces);
+        assertEquals(16, Piece.whitePieces);
     }
 }

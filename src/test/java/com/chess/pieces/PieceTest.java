@@ -26,4 +26,15 @@ public class PieceTest extends TestCase {
         assertEquals("p", piece1.getPrintFormat());
         assertEquals("P", piece2.getPrintFormat());
     }
+
+
+    public void testIsBlack() {
+        assertEquals(false, piece1.isBlack());
+        assertEquals(true, piece2.isBlack());
+    }
+
+    public void testIsWhite() {
+        assertEquals(false, piece2.isWhite());
+        assertEquals(true, piece1.isWhite());
+    }
 }
