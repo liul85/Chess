@@ -17,8 +17,8 @@ public class Board {
             pieces.add(new ArrayList<Piece>(8));
         }
 
-        pieces.set(1, createPiecesInRow(Piece.Names.P, Piece.Colors.Black));
-        pieces.set(6, createPiecesInRow(Piece.Names.P, Piece.Colors.White));
+        pieces.set(1, createPiecesInRow(Piece.Type.PAWN, Piece.Colors.Black));
+        pieces.set(6, createPiecesInRow(Piece.Type.PAWN, Piece.Colors.White));
 
         pieces.set(0, createQueenRank(Piece.Colors.Black));
         pieces.set(7, createQueenRank(Piece.Colors.White));
@@ -33,14 +33,14 @@ public class Board {
    private ArrayList<Piece> createQueenRank(Enum color) {
        ArrayList<Piece> rank = new ArrayList<Piece>(8);
 
-       rank.add(Piece.createPawn(Piece.Names.R, color));
-       rank.add(Piece.createPawn(Piece.Names.N, color));
-       rank.add(Piece.createPawn(Piece.Names.B, color));
-       rank.add(Piece.createPawn(Piece.Names.Q, color));
-       rank.add(Piece.createPawn(Piece.Names.K, color));
-       rank.add(Piece.createPawn(Piece.Names.B, color));
-       rank.add(Piece.createPawn(Piece.Names.N, color));
-       rank.add(Piece.createPawn(Piece.Names.R, color));
+       rank.add(Piece.createPawn(Piece.Type.ROOK, color));
+       rank.add(Piece.createPawn(Piece.Type.KNIGHT, color));
+       rank.add(Piece.createPawn(Piece.Type.BISHOP, color));
+       rank.add(Piece.createPawn(Piece.Type.QUEEN, color));
+       rank.add(Piece.createPawn(Piece.Type.KING, color));
+       rank.add(Piece.createPawn(Piece.Type.BISHOP, color));
+       rank.add(Piece.createPawn(Piece.Type.KNIGHT, color));
+       rank.add(Piece.createPawn(Piece.Type.ROOK, color));
 
        return rank;
    }
