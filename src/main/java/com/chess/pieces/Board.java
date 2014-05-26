@@ -83,4 +83,21 @@ public class Board {
         return buffer.toString();
     }
 
+    protected int getNumberOfPiece(char representation, Enum color) {
+        int number = 0;
+        for ( int n=0; n<=pieces.size()-1; n++) {
+            for (int m = 0; m <= pieces.get(n).size()-1; m++) {
+                if (getPiece(n,m).getRep().equals(Character.toString(representation)) &&
+                        getPiece(n,m).getColor().equals(color.toString())) {
+                    number += 1;
+                }
+            }
+        }
+        return number;
+    }
+
+    private Piece getPiece(int row, int column) {
+        return pieces.get(row).get(column);
+    }
+
 }

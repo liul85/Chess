@@ -31,4 +31,19 @@ public class BoardTest extends TestCase {
         assertEquals(16, Piece.blackPieces);
         assertEquals(16, Piece.whitePieces);
     }
+
+    public void testGetNumberOfPieces() {
+        assertEquals(8, board.getNumberOfPiece(Piece.PAWN_REPRESENTATION, Piece.Colors.Black));
+        assertEquals(8, board.getNumberOfPiece(Piece.PAWN_REPRESENTATION, Piece.Colors.White));
+        assertEquals(2, board.getNumberOfPiece(Piece.ROOK_REPRESENTATION, Piece.Colors.Black));
+        assertEquals(2, board.getNumberOfPiece(Piece.ROOK_REPRESENTATION, Piece.Colors.White));
+        assertEquals(2, board.getNumberOfPiece(Piece.KNIGHT_REPRESENTATION, Piece.Colors.Black));
+        assertEquals(2, board.getNumberOfPiece(Piece.KNIGHT_REPRESENTATION, Piece.Colors.White));
+        assertEquals(2, board.getNumberOfPiece(Piece.BISHOP_REPRESENTATION, Piece.Colors.Black));
+        assertEquals(2, board.getNumberOfPiece(Piece.BISHOP_REPRESENTATION, Piece.Colors.White));
+        assertEquals(1, board.getNumberOfPiece(Piece.QUEEN_REPRESENTATION, Piece.Colors.Black));
+        assertEquals(1, board.getNumberOfPiece(Piece.QUEEN_REPRESENTATION, Piece.Colors.White));
+        assertEquals(1, board.getNumberOfPiece(Piece.KING_REPRESENTATION, Piece.Colors.Black));
+        assertEquals(1, board.getNumberOfPiece(Piece.KING_REPRESENTATION, Piece.Colors.White));
+    }
 }

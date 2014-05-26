@@ -175,4 +175,8 @@ public class Piece {
     protected Enum getType() {
         return type;
     }
+
+    protected String getRep() {
+        return Character.toString(representation);
+    }
 }
